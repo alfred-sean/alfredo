@@ -14,13 +14,14 @@ class AddressSerializer(serializers.ModelSerializer):
             "zip_code",
         ]
 
+
 class CommunityDetailSerializer(serializers.ModelSerializer):
     """
     Builds a relationship with the address - address serialized as ordered dict
     >>> CommunityDetailSerializer(community).data
     {
         'address': OrderedDict(
-            [   
+            [
                 ('id', 'f019ff54-a417-49fe-9c8b-0ec940164026'),
                 ('address_1', '27394 Richard Lock Apt. 047'),
                 ('address_2', '25873 Jesse Island Suite 121'),
@@ -38,7 +39,8 @@ class CommunityDetailSerializer(serializers.ModelSerializer):
         'phone_number': '+1-753-721-1225x2090'
     }
     """
-    address = AddressSerializer(read_only=True)
+
+    address = AddressSerializer()
 
     class Meta:
         model = Community
@@ -52,12 +54,13 @@ class CommunityDetailSerializer(serializers.ModelSerializer):
             "fax_number",
         ]
 
+
 class CommunityListSerializer(serializers.ModelSerializer):
     """
     No address object
 
     >>> CommunityListSerializer(community).data
-    {   
+    {
         'address': UUID('f019ff54-a417-49fe-9c8b-0ec940164026'),
         'capacity': 590,
         'description': 'Particular church sport model. Letter until our relate '
@@ -69,14 +72,14 @@ class CommunityListSerializer(serializers.ModelSerializer):
         'phone_number': '+1-753-721-1225x2090'
     }
     """
+
     class Meta:
         model = Community
-    fields = [
-        "id",
-        "name",
-        "description",
-        "address",
-        "capacity",
-        "phone_number",
-        "fax_number",
-    ]
+        fields = [
+            "id",
+            "name",
+            "description",
+            "capacity",
+            "phone_number",
+            "fax_number",
+        ]

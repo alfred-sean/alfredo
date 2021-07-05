@@ -4,7 +4,7 @@ import factory
 from factory.fuzzy import FuzzyChoice
 from factory.django import DjangoModelFactory
 
-from .models import (
+from ..models import (
     Address,
     Community,
 )
