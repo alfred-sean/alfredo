@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from communities.factories import CommunityFactory
+from communities.tests.factories import CommunityFactory
 
 
 class Command(BaseCommand):

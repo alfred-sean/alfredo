@@ -9,6 +9,12 @@ python manage.py init_db [-n <num_of_facilities>]
 python manage.py runserver
 ```
 
+## Resetting the Database
+```
+rm db.sqlite3
+python manage.py init_db [-n <num_of_facilities>]
+```
+
 ## API Design
 
 ```
