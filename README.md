@@ -13,10 +13,24 @@ python manage.py runserver
 
 ```
 Methods   URL                         Function  CBV
-GET       'api/community'             list		ListCreateAPIView
-POST      'api/community'             create	CreateAPIView
-GET       'api/community/<uuid:id>'  retrieve	RetrieveAPIView
-PUT/PATCH 'api/community/<uuid:id>'  update	UpdateAPIView
-DELETE    'api/community/<uuid:id>'  destroy	DestroyAPIView
+GET       'api/communities'           list		ListCreateAPIView
+POST      'api/communities'           create	CreateAPIView
+GET       'api/communities/<uuid:id>' retrieve	RetrieveAPIView
+PUT/PATCH 'api/communities/<uuid:id>' update	UpdateAPIView
+DELETE    'api/communities/<uuid:id>' destroy	DestroyAPIView
 ```
 
+## URLS
+### Generic Views
+```
+/communities/
+/communities/<uuid:id>
+```
+
+### ViewSets
+```
+/api/communities/
+/api/communities/<uuid:id>
+/api/addresses/
+/api/addresses/<uuid:id>
+```
