@@ -18,11 +18,12 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from communities.views import (
     CommunityViewSet,
+    AddressViewSet,
 )
 
 router = DefaultRouter()
 router.register("communities", CommunityViewSet)
-router.register("addresses", CommunityViewSet)
+router.register("addresses", AddressViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),

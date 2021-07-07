@@ -1,7 +1,6 @@
 from datetime import date, timedelta
 
 import factory
-from factory.fuzzy import FuzzyChoice
 from factory.django import DjangoModelFactory
 
 from ..models import (

@@ -1,4 +1,5 @@
 from rest_framework import generics, viewsets
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.exceptions import ParseError
 from .models import Address, Community
 from .serializers import (
@@ -7,10 +8,15 @@ from .serializers import (
     AddressSerializer,
 )
 
-# Create your views here.
+
 class CommunityListView(generics.ListCreateAPIView):
     """
     http://localhost:8005/communities/?capacity_gt=200&capacity_lt=500&detail=True
+
+    query parameters:
+        - detail
+        - capacity_lt
+        - capacity_gt
     """
 
     queryset = Community.objects.all()
@@ -55,21 +61,26 @@ community_detail_view = CommunityDetailView.as_view()
 
 
 #
-# Here's the same thing, but built with Viewsets
+# Here's the same thing, but built with Viewsets and pagination
 #
 
+class CustomPagination(PageNumberPagination):
+    page_size_query_param = 'page_size'
+    max_page_size = 50
 
 class CommunityViewSet(viewsets.ModelViewSet):
     """
-    http://localhost:8005/communities/?capacity_gt=200&capacity_lt=500&detail=True
+    http://localhost:8005/api/communities/?capacity_gt=200&capacity_lt=500&detail=True
     """
 
     queryset = Community.objects.all()
     serializer_class = CommunityDetailSerializer
+    # pagination_class = PageNumberPagination
+    pagination_class = CustomPagination
 
     def get_queryset(self):
         """
-        http://localhost:8005/communities/?capacity_gt=200&capacity_lt=500
+        http://localhost:8005/api/communities/?capacity_gt=200&capacity_lt=500
         """
         queryset = self.queryset.all()
 
@@ -87,5 +98,8 @@ class CommunityViewSet(viewsets.ModelViewSet):
 
 
 class AddressViewSet(viewsets.ModelViewSet):
+    """
+    http://localhost:8005/api/addresses
+    """
     queryset = Address.objects.all()
     serializer_class = AddressSerializer

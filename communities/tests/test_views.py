@@ -8,14 +8,8 @@ from ..views import CommunityListView
 from ..serializers import CommunityListSerializer, CommunityDetailSerializer
 from .factories import CommunityFactory
 
-
-class TestListView(TestCase):
-    def setUp(self):
-        CommunityFactory(capacity=100)
-        CommunityFactory(capacity=300)
-        CommunityFactory(capacity=500)
-
-    def test_get_serializer_class(self):
+class TestListViewGetSerializerClass(TestCase):
+    def test_get_serializer_class_no_query_params(self):
         request = APIRequestFactory()
         request.query_params = {}
         view = CommunityListView(request=request)
@@ -32,6 +26,12 @@ class TestListView(TestCase):
         serializer_class = view.get_serializer_class()
 
         self.assertEqual(serializer_class, CommunityDetailSerializer)
+
+class TestListViewGetQueryset(TestCase):
+    def setUp(self):
+        CommunityFactory(capacity=100)
+        CommunityFactory(capacity=300)
+        CommunityFactory(capacity=500)
 
     def test_get_queryset_capacity_lt_gt(self):
         request = APIRequestFactory()

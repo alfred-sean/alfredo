@@ -12,10 +12,11 @@ python manage.py runserver
 ## API Design
 
 ```
-GET       'api/community'             list		ListAPIView
+Methods   URL                         Function  CBV
+GET       'api/community'             list		ListCreateAPIView
 POST      'api/community'             create	CreateAPIView
-GET       'api/community/<uuid:_id>'  retrieve	RetrieveAPIView
-PUT/PATCH 'api/community/<uuid:_id>'  update	UpdateAPIView
-DELETE    'api/community/<uuid:_id>'  destroy	DestroyAPIView
+GET       'api/community/<uuid:id>'  retrieve	RetrieveAPIView
+PUT/PATCH 'api/community/<uuid:id>'  update	UpdateAPIView
+DELETE    'api/community/<uuid:id>'  destroy	DestroyAPIView
 ```
 
